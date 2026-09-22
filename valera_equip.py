@@ -77,3 +77,18 @@ def total_power(player):
         if item:
             power += item.power
     return power
+
+
+
+sword = Item('sword', 'left_hand', power=100, two_handed=True)
+femboy = Player('femboy', 3, inventory=[sword])
+
+equip(femboy, sword)
+print(femboy.inventory, femboy.slots)
+
+unequip(femboy, 'left_hand')
+print(femboy.inventory, femboy.slots)
+
+#дюп происходит из-за того, что при equip список player.inventory не меняется, а внутри фунции лишь создаётся новый список
+#в строке 57, и оружие удаляется из него. поэтому, надевая оружие, Валера не убирает его из инвентаря. а снимая, уже меняет
+#список инвентаря игрока, тем самым размножая одно и то же оружие.
